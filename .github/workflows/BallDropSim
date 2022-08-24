@@ -1,0 +1,38 @@
+#BallDropSimulation
+
+import numpy as np
+from math import *
+from matplotlib import pyplot as plt
+# for the above, the 'as xxx'provides a shorthand reference to the full library name
+# for example, I can refer to the numpy library simply as 'np'from now on
+# this next line is essential in order for python notebooks to make 'in-line'plots
+%matplotlib inline
+# after libraries are imported, is common to declare variable names and provide initial values
+h_0=10
+g=-9.8
+dt=0.1
+m = 1
+# the brackets ("[]'s'"), next, set up for arrays (vectors, matrices) of numbers
+z=[h_0]
+v=[0]
+t=[0]
+# here's the main event, a 'for loop'. i will take the value 0, then 1, 2, etc, up to 1000
+# the indented code below it will run for each successive value of i
+# t.append adds to (expands) the array t (initiated above), similarly for v
+# there are 'if'statements within the for loop
+# these give conditions for when we do calculations in the for loop
+# the 'break'command takes us out of the for loop (before i=1000)
+for i in range(1000):
+    if t[i] + dt <1.4:
+        t.append(t[i]+dt)
+    v.append(v[i]+(g)*dt)
+    if z[i]+v[i+1]*dt>=0:
+        z.append(z[i]+v[i+1]*dt)
+    else:
+        break
+# print (t,v,z)
+# print our completed arrays (above) and plot them (next)
+plt.plot(t,z,'.')
+plt.xlabel('Time (s)')
+plt.ylabel('Height (m)')
+plt.show()
